@@ -1,0 +1,12 @@
+body {
+  background-color: #eceff1;
+}
+
+.guide-logo {
+  width: 60px;
+  height: 43px;
+}
+
+#form {
+  margin-top: 5vh;
+}
