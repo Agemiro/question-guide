@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
 const Question = require("./database/Question");
+const Answer = require("./database/Answer");
+const { where } = require("sequelize");
 
 connection
   .authenticate()
@@ -53,12 +55,30 @@ app.get("/question/:id", (req, res) => {
     },
   }).then((question) => {
     if (question != undefined) {
-      res.render("question", {
-        question: question,
+      Answer.findAll({
+        where: { questionId: question.id },
+        order: [["id", "DESC"]],
+      }).then((answers) => {
+        res.render("question", {
+          question: question,
+          answers: answers,
+        });
       });
     } else {
       res.redirect("/");
     }
+  });
+});
+
+app.post("/answer", (req, res) => {
+  var body = req.body.body;
+  var questionId = req.body.question;
+
+  Answer.create({
+    body: body,
+    questionId: questionId,
+  }).then(() => {
+    res.redirect("/question/" + questionId);
   });
 });
 
