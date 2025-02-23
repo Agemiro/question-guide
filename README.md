@@ -29,6 +29,8 @@ Install the project dependencies:
 npm install
 ```
 
+After that, update your machine's MySQL credentials in the _database.js_ file.
+
 ### ⚡ Running
 
 To start the application, run:
