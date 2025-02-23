@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const connection = require("./database/database");
 const Question = require("./database/Question");
 const Answer = require("./database/Answer");
-const { where } = require("sequelize");
 
 connection
   .authenticate()
